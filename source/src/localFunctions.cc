@@ -2,43 +2,27 @@
 /// ************************************************************************ ///
 /// local functions 
 /// Pierre GRANDEMANGE
-/// 01/03/2022
+/// 09/07/2023
 /// ************************************************************************ ///
 
-/// includes and namespaces
-/// ****************************************************************************
-/// standard library
-#include <iostream>		/// input output streams
-/// root classes
-/// rep classes
-/// rep namespaces
-#include "RDump.h"
-// local functions
 #include "localFunctions.h"
 using namespace std;
 
-/// debug functions
-/// ****************************************************************************
-
-/// dumpCheck
+/// hirep
 /// ----------------------------------------------------------------------------
-void dumpCheck()
-{ cout << "dumpCheck()" << endl; }
-
-/// dumpGlobals 
-/// ----------------------------------------------------------------------------
-/// dump the list of global variables
-void dumpGlobals()
+void hirep()
 {
-  /// header
-  RDump::header("dumpGlobals");
-  /// dump the list of global strings
-  cout << "gtimerstart:   " 	<< gtimerstart 		<< endl;
-  cout << "projectFolder: "		<< projectFolder 	<< endl;
-  cout << "dataFolder:    "		<< dataFolder 		<< endl;
-  cout << "repNamespaces: " 	<< repNamespaces 	<< endl;
-  cout << "repObjects:    "		<< repObjects 		<< endl;
+	cout << "hi rep" << endl;
+}
+void hirep_main()
+{
+	thread t(hirep);
+	t.join();
 }
 
-
-
+/// rnn_cost_simple
+/// ----------------------------------------------------------------------------
+void rnn_cost_simple()
+{
+	/// you need a proper copy constructor for RNNFast
+}
