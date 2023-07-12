@@ -25,4 +25,12 @@ void hirep_main()
 void rnn_cost_simple()
 {
 	/// you need a proper copy constructor for RNNFast
+	vector<size_t> hlsi{};
+	RNNFast<double> rnn01("copy1", 1, 1, hlsi);
+	rnn01.dump();
+	
+	cout << endl << "after copy" << endl;
+	RNNFast<double> rnn02 = rnn01;
+	rnn02.setName("copy2");
+	rnn02.dump();
 }

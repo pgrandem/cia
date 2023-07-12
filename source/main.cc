@@ -21,6 +21,7 @@ using namespace std;
 /// ****************************************************************************
 int main()
 {
+	rnn_cost_simple();
 	//hirep_main();
 	return 0;
 }
