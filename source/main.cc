@@ -13,7 +13,7 @@ using namespace std;
 int main()
 {
 	ch02_main();
-	//hirep_main();
+	//ch01_main();
 	
 	return 0;
 }

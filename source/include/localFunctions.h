@@ -11,6 +11,7 @@
 /// ****************************************************************************
 /// standard library
 #include <iostream>
+#include <string>
 #include <thread>
 /// rep classes
 /// rep namespaces
@@ -21,8 +22,32 @@
 /// ****************************************************************************
 void ch02_main();
 
-void ch02_part02();
+/// ch02_02 passing arguments to a thread function
+/// ----------------------------------------------------------------------------
+void ch02_02();
+void ch02_02_f00(int i, std::string const& s);
 
+
+/// ch02_01 basic thread management
+/// ----------------------------------------------------------------------------
+void ch02_part02();
+void edit_document(std::string const& filename);
+void ch02_f01();
+class thread_guard{
+	std::thread & _t;
+	public:
+	explicit thread_guard(std::thread & t) : _t(t) {}
+	~thread_guard()
+	{
+		if( _t.joinable() ) {
+			_t.join();
+		}
+	}
+	thread_guard( thread_guard const& ) = delete;
+	thread_guard& operator=(thread_guard const& ) = delete;
+};
+void trycatch();
+void oops();
 struct func{
 	int & _i;
 	func(int & i) : _i(i) {}
@@ -34,10 +59,6 @@ struct func{
 		}
 	}
 };
-void oops();
-
-
-
 void ch02_part01();
 class background_task
 {
@@ -57,6 +78,7 @@ void dosomework();
 /// ****************************************************************************
 /// hirep
 /// ----------------------------------------------------------------------------
+void ch01_main();
 void hirep();
-void hirep_main();
+
 
