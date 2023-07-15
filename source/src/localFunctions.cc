@@ -14,15 +14,88 @@
 /// ****************************************************************************
 void ch02_main()
 {
-	ch02_02();
-	//ch02_part02();
-	//ch02_part01();
+	ch02_03_01();
 }
+
+
+/// ch02_03 transferring owneership to a thread
+/// ----------------------------------------------------------------------------
+void ch02_03_01()
+{
+	std::thread t01{ ch02_03_some_function };
+	std::thread t02{ std::move(t01) };
+	t01 = std::thread{ ch02_03_some_other_function };
+	std::thread t03;
+	t03 = std::move(t02);
+	t01.join();
+	t01 = std::move(t03);
+	t01.join();
+}
+
+void ch02_03_some_other_function()	{ /* do some other stuff */ }
+void ch02_03_some_function() 				{ /* do stuff */ }
+
+
+
+
+
+
 
 
 /// ch02_02 passing arguments to a thread function
 /// ----------------------------------------------------------------------------
-void ch02_02()
+void ch02_02_test_move()
+{
+	std::unique_ptr<xclass> upx{ new xclass };
+	upx->dump(42);
+	std::thread thr(ch02_02_process_big_object, std::move(upx));
+	upx->dump(404);	/// isn't this line supposed to bug ?! it does not
+	//thr.detach();
+	thr.join();
+}
+
+void ch02_02_process_big_object(std::unique_ptr<xclass> upx)
+{
+	int arg{7};
+	upx->dump( arg );
+}
+void ch02_02_test_class_member_function()
+{
+	int 					arg{ 9 };
+	xclass*				obj{ new xclass };
+	std::thread		thr{ & xclass::dump, obj, std::ref(arg) };
+	thr.join();
+}
+void ch02_02_oops_again()
+{
+	std::string str{"initial string"};
+	//std::thread thr{ch02_02_update_data_for_widget, str};
+	std::thread thr{ch02_02_update_data_for_widget, std::ref(str)};
+	thr.join();
+	std::cout << str << std::endl;
+}
+void ch02_02_update_data_for_widget(std::string & strtomodif)
+{
+	strtomodif += "... multithreaded!";
+}
+
+void ch02_02_not_oops()
+{
+	char buffer[1024];
+	sprintf(buffer, "%i", 24);
+	std::thread t(ch02_02_f00, 3, std::string(buffer));
+	t.detach();
+}
+
+void ch02_02_oops()
+{
+	char buffer[1024];
+	sprintf(buffer, "%i", 24);
+	std::thread t(ch02_02_f00, 3, buffer);
+	t.detach();
+}
+
+void ch02_02_01()
 {
 	std::thread t(ch02_02_f00, 3, "la fête est finie");
 	t.join();

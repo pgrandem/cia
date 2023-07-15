@@ -22,9 +22,31 @@
 /// ****************************************************************************
 void ch02_main();
 
+
+/// ch02_03 transferring owneership to a thread
+/// ----------------------------------------------------------------------------
+void ch02_03_01();
+void ch02_03_some_other_function();
+void ch02_03_some_function();
+
+
+
 /// ch02_02 passing arguments to a thread function
 /// ----------------------------------------------------------------------------
-void ch02_02();
+class xclass{
+	public:
+		void dump(int const & x)
+		{ std::cout << "xclass dump: " << x << std::endl; }
+};
+
+void ch02_02_test_move();
+void ch02_02_process_big_object(std::unique_ptr<xclass> upx);
+void ch02_02_test_class_member_function();
+void ch02_02_oops_again();
+void ch02_02_update_data_for_widget(std::string & strtomodif);
+void ch02_02_not_oops();
+void ch02_02_01();
+void ch02_02_oops();
 void ch02_02_f00(int i, std::string const& s);
 
 
