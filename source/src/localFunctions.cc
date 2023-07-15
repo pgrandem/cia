@@ -14,8 +14,38 @@
 /// ****************************************************************************
 void ch02_main()
 {
-	ch02_03_01();
+	ch02_05();
 }
+
+
+/// ch02_05 identifying threads
+/// ----------------------------------------------------------------------------
+void ch02_05()
+{
+	ch02_05_dump_thread_id();
+	std::thread thr{ch02_05_dump_thread_id};
+	thr.join();
+
+}
+
+void ch02_05_dump_thread_id()
+{
+	std::cout << std::this_thread::get_id() << std::endl;
+}
+	
+
+
+/// ch02_04 choosing the number of threads at runtime
+/// ----------------------------------------------------------------------------
+void ch02_04()
+{
+	std::cout << std::endl << "std::thread::hardware_concurrency() = ";
+	std::cout << std::thread::hardware_concurrency() << std::endl << std::endl;
+}
+
+
+
+
 
 
 /// ch02_03 transferring owneership to a thread
