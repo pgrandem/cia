@@ -12,7 +12,8 @@ using namespace std;
 /// ****************************************************************************
 int main()
 {
-	ch02_main();
+	chib_main();
+	//ch02_main();
 	//ch01_main();
 	
 	return 0;

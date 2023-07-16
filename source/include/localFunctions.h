@@ -11,11 +11,26 @@
 /// ****************************************************************************
 /// standard library
 #include <iostream>
+#include <chrono>
+#include <cmath>
 #include <string>
 #include <thread>
+#include <vector>
 /// rep classes
 /// rep namespaces
+#include <RMath.h>
 
+
+/// in between chapters - in loop threads
+/// ****************************************************************************
+void chib_main();
+void chib_core(
+	size_t const& nth,
+	std::vector<std::thread> & thr, 
+	std::vector<double> & buf, 
+	size_t & j_i
+);
+void chib_func(double & buf, size_t i);
 
 
 /// cia - chapter 02
