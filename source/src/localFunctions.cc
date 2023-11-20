@@ -91,8 +91,10 @@ void chib_func(double & buf, size_t i)
 void ch02_main()
 {
 	//ch02_05();
-	//ch02_04();
-	//cd ..ch02_03_01();
+	ch02_04();
+	//ch02_03_01();
+	//ch02_part02();
+	//ch02_part01();
 
 }
 
