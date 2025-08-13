@@ -13,8 +13,8 @@ using namespace std;
 int main()
 {
 	//chib_main();
-	ch02_main();
-	//ch01_main();
+	//ch02_main();
+	ch01_main();
 	
 	return 0;
 }
