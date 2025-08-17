@@ -79,7 +79,7 @@ void chib_core(
 void chib_func(double & buf, size_t i)
 {
 	/// the loop artificially increase the time ratio spent in worker threads
-	/// vs time spent in main threadclear
+	/// vs time spent in main thread
 	for(size_t g=0; g<100000; g++) { buf = (double)i; }
 }
 
@@ -90,14 +90,48 @@ void chib_func(double & buf, size_t i)
 /// ****************************************************************************
 void ch02_main()
 {
+	ch02_09();
 	//ch02_05();
-	ch02_04();
+	//ch02_04();
 	//ch02_03_01();
 	//ch02_part02();
 	//ch02_part01();
 
 }
 
+/// ch02_09 naïve parallel version of std::accumulate : INCOMPLETE
+/// ----------------------------------------------------------------------------
+template<typename Iterator, typename T>
+struct accumulate_block{
+	void operator()(Iterator first, Iterator last, T& result) 
+	{
+		result = std::accumulate(first, last, result);
+	}
+};
+
+template<typename Iterator, typename T>
+T accumulate_parallel(Iterator first, Iterator last, T init)
+{
+	unsigned long const length = std::distance(first, last);
+	if(!length)
+		return init;
+	unsigned long const min_per_thread = 25;
+	unsigned long const max_threads = (length+min_per_thread-1)/min_per_thread;
+	unsigned long const hardware_threads = std::thread::hardware_concurrency();
+	unsigned long const num_threads = 
+		std::min(hardware_threads!=0?hardware_threads:2,max_threads);
+		//std::cout << num_threads << std::endl;
+}
+
+void ch02_09()
+{
+	std::cout << std::endl;
+	std::cout << "ch02_09 : naïve // version of std::accumulate" << std::endl;
+	std::vector<double> vec;
+	//for(uint i{0}; i<20; i++) vec.push_back(i+i*3.25);
+	//for(uint i{0}; i<20; i++) std::cout << vec[i] << std::endl;
+	//double res = accumulate_parallel(vec.begin(), vec.end(), 0);
+}
 
 /// ch02_05 identifying threads
 /// ----------------------------------------------------------------------------

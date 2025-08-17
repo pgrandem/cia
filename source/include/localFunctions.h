@@ -10,9 +10,10 @@
 /// includes
 /// ****************************************************************************
 /// standard library
-#include <iostream>
 #include <chrono>
 #include <cmath>
+#include <iostream>
+#include <numeric>
 #include <string>
 #include <thread>
 #include <vector>
@@ -36,6 +37,11 @@ void chib_func(double & buf, size_t i);
 /// cia - chapter 02
 /// ****************************************************************************
 void ch02_main();
+
+
+/// ch02_09 naïve parallelversion of std::accumulate : INCOMPLETE
+/// ----------------------------------------------------------------------------
+void ch02_09();
 
 
 /// ch02_05 identifying threads
